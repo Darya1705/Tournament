@@ -3,7 +3,7 @@ package ru.netology.game;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.NotFoundException;
+import ru.netology.domain.NotRegisteredException;
 import ru.netology.domain.Player;
 import ru.netology.game.Game;
 
@@ -16,7 +16,7 @@ class GameTest {
     Game game = new Game();
 
     @Test
-    void setPlayersRegistered() throws NotFoundException {
+    void setPlayersRegistered() throws NotRegisteredException {
         game.setPlayersRegistered(first);
         game.checkForRegistered("Slava");
         Player expected = first;
@@ -66,7 +66,7 @@ class GameTest {
     }
 
     @Test
-    public void roundWinBeta() throws NotFoundException {
+    public void roundWinBeta() throws NotRegisteredException {
         game.setPlayersRegistered(first);
         game.setPlayersRegistered(second);
         int expected = 1;
@@ -75,7 +75,7 @@ class GameTest {
     }
 
     @Test
-    public void roundWinGama() throws NotFoundException {
+    public void roundWinGama() throws NotRegisteredException {
         game.setPlayersRegistered(third);
         game.setPlayersRegistered(first);
         int expected = 2;
@@ -84,7 +84,7 @@ class GameTest {
     }
 
     @Test
-    public void roundWinAlpha() throws NotFoundException {
+    public void roundWinAlpha() throws NotRegisteredException {
         game.setPlayersRegistered(fourth);
         game.setPlayersRegistered(third);
         int expected = 0;
@@ -101,10 +101,9 @@ class GameTest {
         try {
             int actual = game.round("Kostya", "Vasya");
             assertEquals(expected, actual);
-        } catch (NotFoundException exception) {
+        } catch (NotRegisteredException exception) {
             System.out.println("Player is not registered");
         }
     }
-
 }
 

@@ -1,6 +1,6 @@
 package ru.netology.game;
 
-import ru.netology.domain.NotFoundException;
+import ru.netology.domain.NotRegisteredException;
 import ru.netology.domain.Player;
 
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ public class Game {
         items.add(player);
     }
 
-    public void checkForRegistered(String name) throws NotFoundException {
+    public void checkForRegistered(String name) throws NotRegisteredException {
         if (searchByName(name) == null) {
-            throw new NotFoundException("Player " + name + " is not registered");
+            throw new NotRegisteredException("Player " + name + " is not registered");
         }
     }
 
@@ -29,7 +29,7 @@ public class Game {
         return null;
     }
 
-    public int round(String firstName, String secondName) throws NotFoundException {
+    public int round(String firstName, String secondName) throws NotRegisteredException {
 
         checkForRegistered(firstName);
         checkForRegistered(secondName);
